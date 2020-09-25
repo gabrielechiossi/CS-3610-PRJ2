@@ -1,8 +1,24 @@
-#include <iostream>
-#include "avl_tree.h"
-using namespace std;
+// C++ program to delete a node from AVL Tree 
+#include<bits/stdc++.h> 
+using namespace std; 
 
-int AVLTree::height(Node *N) 
+// An AVL tree node 
+class Node 
+{ 
+	public: 
+	int key; 
+	Node *left; 
+	Node *right; 
+	int height; 
+}; 
+
+// A utility function to get maximum 
+// of two integers 
+int max(int a, int b); 
+
+// A utility function to get height 
+// of the tree 
+int height(Node *N) 
 { 
 	if (N == NULL) 
 		return 0; 
@@ -11,7 +27,7 @@ int AVLTree::height(Node *N)
 
 // A utility function to get maximum 
 // of two integers 
-int AVLTree::max(int a, int b) 
+int max(int a, int b) 
 { 
 	return (a > b)? a : b; 
 } 
@@ -19,7 +35,7 @@ int AVLTree::max(int a, int b)
 /* Helper function that allocates a 
 new node with the given key and 
 NULL left and right pointers. */
-Node* AVLTree::newNode(int key) 
+Node* newNode(int key) 
 { 
 	Node* node = new Node(); 
 	node->key = key; 
@@ -33,7 +49,7 @@ Node* AVLTree::newNode(int key)
 // A utility function to right 
 // rotate subtree rooted with y 
 // See the diagram given above. 
-Node *AVLTree::rightRotate(Node *y) 
+Node *rightRotate(Node *y) 
 { 
 	Node *x = y->left; 
 	Node *T2 = x->right; 
@@ -55,7 +71,7 @@ Node *AVLTree::rightRotate(Node *y)
 // A utility function to left 
 // rotate subtree rooted with x 
 // See the diagram given above. 
-Node *AVLTree::leftRotate(Node *x) 
+Node *leftRotate(Node *x) 
 { 
 	Node *y = x->right; 
 	Node *T2 = y->left; 
@@ -75,7 +91,7 @@ Node *AVLTree::leftRotate(Node *x)
 } 
 
 // Get Balance factor of node N 
-int AVLTree::getBalance(Node *N) 
+int getBalance(Node *N) 
 { 
 	if (N == NULL) 
 		return 0; 
@@ -83,7 +99,7 @@ int AVLTree::getBalance(Node *N)
 		height(N->right); 
 } 
 
-Node* AVLTree::insert(Node* node, int key) 
+Node* insert(Node* node, int key) 
 { 
 	/* 1. Perform the normal BST rotation */
 	if (node == NULL) 
@@ -138,7 +154,7 @@ Node* AVLTree::insert(Node* node, int key)
 return the node with minimum key value 
 found in that tree. Note that the entire 
 tree does not need to be searched. */
-Node * AVLTree::minValueNode(Node* node) 
+Node * minValueNode(Node* node) 
 { 
 	Node* current = node; 
 
@@ -153,7 +169,7 @@ Node * AVLTree::minValueNode(Node* node)
 // with given key from subtree with 
 // given root. It returns root of the 
 // modified subtree. 
-Node* AVLTree::deleteNode(Node* root, int key) 
+Node* deleteNode(Node* root, int key) 
 { 
 	
 	// STEP 1: PERFORM STANDARD BST DELETE 
@@ -261,7 +277,7 @@ Node* AVLTree::deleteNode(Node* root, int key)
 // traversal of the tree. 
 // The function also prints height 
 // of every node 
-void AVLTree::inOrderHeight(Node *root) 
+void inOrderHeight(Node *root) 
 { 
 	if(root != NULL) 
 	{ 
@@ -272,7 +288,7 @@ void AVLTree::inOrderHeight(Node *root)
     cout << endl;
 } 
 
-void AVLTree::inOrderKey(Node *root) 
+void inOrderKey(Node *root) 
 { 
 	if(root != NULL) 
 	{ 
@@ -282,3 +298,32 @@ void AVLTree::inOrderKey(Node *root)
 	}
     cout << endl; 
 } 
+
+// Driver Code 
+int main() 
+{ 
+Node *root = NULL; 
+    int rm, value; 
+char option;
+  do{
+      cin >> option;
+      switch(option){
+          case 'i':
+            cin >> value;
+            root = insert(root, value);
+            break;
+          case 'r':
+            cin >> rm;
+            root = deleteNode(root, rm);
+            break;
+          case 'h':
+            inOrderHeight(root);
+            break;
+          case 'p':
+            inOrderKey(root);
+      }
+  }while(option != 'q');
+	return 0; 
+} 
+
+// This code is contributed by rathbhupendra 

@@ -2,32 +2,28 @@
 #include "avl_tree.h"
 using namespace std;
 
-int main(int argc, char** argv) {
-
-  AVLTree tree;
-
-  char option;
-  int key;
-
-  do {
-    cin >> option;
-    switch(option) {
-      case 'i':
-        cin >> key;
-        tree.insert(key);
-        break;
-      case 'r':
-        cin >> key;
-        tree.delete(key);
-        break;
-      case 'h':
-        tree.print('h');
-        break;
-      case 'p':
-        tree.print('p');
-        break;
-      default:
-        break;
-    }
-  } while(option != 'q');
-}
+int main() 
+{ 
+Node *root = NULL; 
+    int rm, value; 
+char option;
+  do{
+      cin >> option;
+      switch(option){
+          case 'i':
+            cin >> value;
+            root.insert(root, value);
+            break;
+          case 'r':
+            cin >> rm;
+            root = deleteNode(root, rm);
+            break;
+          case 'h':
+            inOrderHeight(root);
+            break;
+          case 'p':
+            inOrderKey(root);
+      }
+  }while(option != 'q');
+	return 0; 
+} 
