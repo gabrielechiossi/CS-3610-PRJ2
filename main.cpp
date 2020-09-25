@@ -12,7 +12,7 @@ char option;
       switch(option){
           case 'i':
             cin >> value;
-            root.insert(root, value);
+            root = insert(root, value);
             break;
           case 'r':
             cin >> rm;

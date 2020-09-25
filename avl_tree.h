@@ -19,15 +19,13 @@ class AVLTree{
     void inOrderHeight(Node *root);
     void inOrderKey(Node *root);
   private:
-    
     Node* newNode(int key) ;
     Node *rightRotate(Node *y);
     Node *leftRotate(Node *x);
-    
     Node* insert(Node* node, int key);
     Node * minValueNode(Node* node);
     Node* deleteNode(Node* root, int key);
-    
+    Node* root;
 };
 
 #endif
