@@ -2,6 +2,23 @@
 #include "avl_tree.h"
 using namespace std;
 
+void AVLTree::insert(const int key){
+	this->root = insert(this->root, key);
+}
+
+void AVLTree::deleteNode(const int key){
+	this->root = deleteNode(this->root, key);
+}
+
+void AVLTree::print(const char c){
+	if(c == 'h'){
+		inOrderHeight(this->root);
+	}else if(c == 'p'){
+		inOrderKey(this->root);
+	}
+	cout << endl;
+}
+
 int AVLTree::height(Node *N) 
 { 
 	if (N == NULL) 
@@ -19,7 +36,7 @@ int AVLTree::max(int a, int b)
 /* Helper function that allocates a 
 new node with the given key and 
 NULL left and right pointers. */
-Node* AVLTree::newNode(int key) 
+/*Node* AVLTree::newNode(int key) 
 { 
 	Node* node = new Node(); 
 	node->key = key; 
@@ -28,7 +45,7 @@ Node* AVLTree::newNode(int key)
 	node->height = 1; // new node is initially 
 					// added at leaf 
 	return(node); 
-} 
+} */
 
 // A utility function to right 
 // rotate subtree rooted with y 
@@ -87,7 +104,7 @@ Node* AVLTree::insert(Node* node, int key)
 { 
 	/* 1. Perform the normal BST rotation */
 	if (node == NULL) 
-		return(newNode(key)); 
+		return new Node(key); 
 
 	if (key < node->key) 
 		node->left = insert(node->left, key); 
@@ -266,10 +283,9 @@ void AVLTree::inOrderHeight(Node *root)
 	if(root != NULL) 
 	{ 
 		inOrderHeight(root->left);
-        cout << "height: " << root->height << " "; 
+        cout << root->height << " "; 
 		inOrderHeight(root->right); 
 	} 
-    cout << endl;
 } 
 
 void AVLTree::inOrderKey(Node *root) 
@@ -279,6 +295,5 @@ void AVLTree::inOrderKey(Node *root)
 		inOrderKey(root->left);
         cout << root->key << " "; 
 		inOrderKey(root->right); 
-	}
-    cout << endl; 
+	} 
 } 

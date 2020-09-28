@@ -4,7 +4,7 @@ using namespace std;
 
 int main() 
 { 
-Node *root = NULL; 
+AVLTree root; 
     int rm, value; 
 char option;
   do{
@@ -12,17 +12,17 @@ char option;
       switch(option){
           case 'i':
             cin >> value;
-            root = insert(root, value);
+            root.insert(value);
             break;
           case 'r':
             cin >> rm;
-            root = deleteNode(root, rm);
+            root.deleteNode(rm);
             break;
           case 'h':
-            inOrderHeight(root);
+            root.print('h');
             break;
           case 'p':
-            inOrderKey(root);
+            root.print('p');
       }
   }while(option != 'q');
 	return 0; 
